@@ -8,6 +8,21 @@ spring:
       ddl-auto: update
     show-sql: true
 
-# Consultant's Tip: Use this to track which instance of a service is responding
+# Consultant's Observability Strategy
+management:
+  endpoints:
+    web:
+      exposure:
+        # Exposing 'refresh' is mandatory for @RefreshScope to work
+        include: "health,info,refresh,beans"
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+# Custom properties for our Business Logic
 globalmart:
-  environment: "Consultant-Lab-Alpha"
+  environment: "Production-Simulation"
+  order-prefix: "GM-ORD-"
